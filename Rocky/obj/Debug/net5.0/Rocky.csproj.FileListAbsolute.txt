@@ -77,3 +77,5 @@ C:\Users\Admin\Rider project\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Category\I
 C:\Users\Admin\Rider project\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Category\Create.cshtml.g.cs
 C:\Users\Admin\Rider project\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\ApplicationType\Index.cshtml.g.cs
 C:\Users\Admin\Rider project\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\ApplicationType\Create.cshtml.g.cs
+C:\Users\Admin\Rider project\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Category\Edit.cshtml.g.cs
+C:\Users\Admin\Rider project\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Category\Delete.cshtml.g.cs
