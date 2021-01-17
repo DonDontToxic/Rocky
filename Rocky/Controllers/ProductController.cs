@@ -34,9 +34,6 @@ namespace Rocky.Controllers
                 obj.Category = _db.Category.FirstOrDefault(
                     u => u.Id == obj.CategoryId);
             };
-            
-            
-
             return View(objList);
         }
         
@@ -81,7 +78,15 @@ namespace Rocky.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Upsert(ProductVM productVM)
         {
-            if (!ModelState.IsValid) return View(productVM);
+            if (!ModelState.IsValid)
+            {
+                productVM.CategorySelectList = _db.Category.Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.Id.ToString()
+                });
+                return View(productVM);
+            };
             var files = HttpContext.Request.Form.Files;
             var webRootPath = _webHostEnvironment.WebRootPath;
 
@@ -131,7 +136,7 @@ namespace Rocky.Controllers
                     productVM.Product.Image = fileName + extension;
                 }
                 else
-                {
+                { 
                     if (objFromDb != null) productVM.Product.Image = objFromDb.Image;
                 }
                 _db.Product.Update(productVM.Product);
@@ -140,9 +145,38 @@ namespace Rocky.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Delete()
+        // GET - DELETE
+        public IActionResult Delete(int? id)
         {
-            throw new System.NotImplementedException();
+            if (id == 0 || id == null) return NotFound();
+            
+            var product = _db.Product.Include(u=>u.Category)
+                .FirstOrDefault(u=>u.Id == id); // Only find for the primary key
+            if (product == null) return NotFound();
+            
+            return View(product);        
+        }
+        
+        // POST - DELETE
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeletePost(int? id)
+        {
+            var product = _db.Product.Find(id);
+            if (product == null) return NotFound();
+            
+            // Handle the product image on local
+            var webRootPath = _webHostEnvironment.WebRootPath;
+            var upload = webRootPath + WC.ImagePath;
+            var oldFile = Path.Combine(upload, product.Image);
+            if (System.IO.File.Exists(oldFile))
+            {
+                System.IO.File.Delete(oldFile);
+            }
+            // Handle the product on db
+            _db.Product.Remove(product);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
