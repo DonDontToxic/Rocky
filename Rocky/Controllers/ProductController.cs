@@ -27,13 +27,18 @@ namespace Rocky.Controllers
         // GET
         public IActionResult Index()
         {
-            IEnumerable<Product> objList = _db.Product;
+            IEnumerable<Product> objList = _db.Product
+                .Include(u=>u.Category)
+                .Include(u=>u.ApplicationType);
 
-            foreach (var obj in objList)
-            {
-                obj.Category = _db.Category.FirstOrDefault(
-                    u => u.Id == obj.CategoryId);
-            };
+            // foreach (var obj in objList)
+            // {
+            //     obj.Category = _db.Category.FirstOrDefault(
+            //         u => u.Id == obj.CategoryId);
+            //     obj.ApplicationType = _db.ApplicationType.FirstOrDefault(
+            //         u => u.Id == obj.ApplicationId);
+            // };
+            
             return View(objList);
         }
         
@@ -53,6 +58,11 @@ namespace Rocky.Controllers
             {
                 Product = new Product(),
                 CategorySelectList = _db.Category.Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.Id.ToString()
+                }),
+                ApplicationSelectList = _db.ApplicationType.Select(i => new SelectListItem
                 {
                     Text = i.Name,
                     Value = i.Id.ToString()
@@ -81,6 +91,11 @@ namespace Rocky.Controllers
             if (!ModelState.IsValid)
             {
                 productVM.CategorySelectList = _db.Category.Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.Id.ToString()
+                });
+                productVM.ApplicationSelectList = _db.ApplicationType.Select(i => new SelectListItem
                 {
                     Text = i.Name,
                     Value = i.Id.ToString()
@@ -150,7 +165,9 @@ namespace Rocky.Controllers
         {
             if (id == 0 || id == null) return NotFound();
             
-            var product = _db.Product.Include(u=>u.Category)
+            var product = _db.Product
+                .Include(u=>u.Category)
+                .Include(u=>u.ApplicationType)
                 .FirstOrDefault(u=>u.Id == id); // Only find for the primary key
             if (product == null) return NotFound();
             
