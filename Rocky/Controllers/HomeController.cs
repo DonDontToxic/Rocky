@@ -35,6 +35,19 @@ namespace Rocky.Controllers
             return View(homeVm);
         }
 
+        public IActionResult Details(int id)
+        {
+            var detailsVM = new DetailsVM
+            {
+                Product = _db.Product
+                    .Include(u => u.Category)
+                    .Include(u => u.ApplicationType)
+                    .FirstOrDefault(u => u.Id == id),
+                ExistsInCart = false
+            };
+            return View(detailsVM); 
+        }
+
         public IActionResult Privacy()
         {
             return View();
@@ -44,6 +57,11 @@ namespace Rocky.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
+        }
+
+        public IActionResult RemoveFromCart()
+        {
+            throw new NotImplementedException();
         }
     }
 }

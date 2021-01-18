@@ -85,3 +85,4 @@ C:\Users\Admin\Rider project\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Product\In
 C:\Users\Admin\Rider project\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Product\Upsert.cshtml.g.cs
 C:\Users\Admin\Rider project\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Product\Delete.cshtml.g.cs
 C:\Users\Admin\Rider project\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Shared\_IndividualProductCart.cshtml.g.cs
+C:\Users\Admin\Rider project\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Home\Details.cshtml.g.cs
