@@ -36,9 +36,15 @@ namespace Rocky.Controllers
             };
             return View(homeVm);
         }
-
+        // GET - DETAIL
         public IActionResult Details(int id)
         {
+            List<ShoppingCart> shoppingCartList = new List<ShoppingCart>();
+            if (HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WC.SessionCart) != null
+                && HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WC.SessionCart).Any())
+            {
+                shoppingCartList = HttpContext.Session.Get<List<ShoppingCart>>(WC.SessionCart);
+            }
             var detailsVM = new DetailsVM
             {
                 Product = _db.Product
@@ -47,8 +53,17 @@ namespace Rocky.Controllers
                     .FirstOrDefault(u => u.Id == id),
                 ExistsInCart = false
             };
+
+            foreach (var item in shoppingCartList)
+            {
+                if (item.ProductId == id)
+                {
+                    detailsVM.ExistsInCart = true;
+                }
+            }
             return View(detailsVM); 
         }
+        // POST - DETAIL
         [HttpPost, ActionName("Details")]
         [ValidateAntiForgeryToken]
         public IActionResult DetailsPost(int id)
@@ -63,7 +78,25 @@ namespace Rocky.Controllers
             HttpContext.Session.Set(WC.SessionCart, shoppingCartList);
             return RedirectToAction(nameof(Index)); 
         }
+        // POST - REMOVE
+        public IActionResult RemoveFromCart(int id)
+        {
+            List<ShoppingCart> shoppingCartList = new List<ShoppingCart>();
+            if (HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WC.SessionCart) != null
+                && HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WC.SessionCart).Any())
+            {
+                shoppingCartList = HttpContext.Session.Get<List<ShoppingCart>>(WC.SessionCart);
+            }
 
+            var itemToRemove = shoppingCartList.SingleOrDefault(r => r.ProductId == id);
+            if (itemToRemove != null)
+            {
+                shoppingCartList.Remove(itemToRemove);
+            }
+            HttpContext.Session.Set(WC.SessionCart, shoppingCartList);
+            return RedirectToAction(nameof(Index));         
+        }
+        
         public IActionResult Privacy()
         {
             return View();
@@ -73,11 +106,6 @@ namespace Rocky.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
-        }
-
-        public IActionResult RemoveFromCart()
-        {
-            throw new NotImplementedException();
         }
     }
 }
