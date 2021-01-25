@@ -14,11 +14,10 @@ namespace Rocky.Utility
         private readonly IConfiguration _configuration;
         public MailJetSettings _mailJetSettings { get; set; }
 
-        public EmailSender(IConfiguration configuration, MailJetSettings mailJetSettings)
+        public EmailSender(IConfiguration configuration)
 
         {
             _configuration = configuration;
-            _mailJetSettings = mailJetSettings;
         }
 
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
