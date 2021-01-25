@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Rocky.Data;
 using Rocky.Models;
 
 namespace Rocky.Controllers
 {
+    [Authorize(Roles = WC.AdminRole)]
     public class ApplicationTypeController : Controller
     {
         private readonly ApplicationDbContext _db;
