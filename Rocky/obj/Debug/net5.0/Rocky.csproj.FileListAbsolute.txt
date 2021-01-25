@@ -213,3 +213,4 @@ C:\Users\Admin\Rider project\Rocky\Rocky\obj\Debug\net5.0\Razor\Areas\Identity\P
 C:\Users\Admin\Rider project\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
 C:\Users\Admin\Rider project\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Cart\Index.cshtml.g.cs
 C:\Users\Admin\Rider project\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Cart\Summary.cshtml.g.cs
+C:\Users\Admin\Rider project\Rocky\Rocky\bin\Debug\net5.0\Mailjet.Client.dll

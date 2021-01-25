@@ -16,6 +16,7 @@ namespace Rocky.Controllers
     public class CartController : Controller
     {
         private readonly ApplicationDbContext _db;
+        [BindProperty]
         public ProductUserVM ProductUserVm { get; set; }
     
 
@@ -73,6 +74,21 @@ namespace Rocky.Controllers
                 ProductList = prodList
             };
             return View(ProductUserVm);
+        }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Summary")]
+        public IActionResult SummaryPost(ProductUserVM ProductUserVm)
+        {
+            
+            return RedirectToAction(nameof(InquiryConfirmation));
+        }
+        public IActionResult InquiryConfirmation()
+        {
+            HttpContext.Session.Clear();
+            
+            return View();
         }
 
         public IActionResult Remove(int id)
