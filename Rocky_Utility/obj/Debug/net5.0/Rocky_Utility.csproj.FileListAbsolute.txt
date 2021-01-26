@@ -1,0 +1,12 @@
+C:\Users\Admin\Rider project\Rocky\Rocky_Utility\obj\Debug\net5.0\Rocky_Utility.csprojAssemblyReference.cache
+C:\Users\Admin\Rider project\Rocky\Rocky_Utility\obj\Debug\net5.0\Rocky_Utility.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\Rider project\Rocky\Rocky_Utility\obj\Debug\net5.0\Rocky_Utility.AssemblyInfoInputs.cache
+C:\Users\Admin\Rider project\Rocky\Rocky_Utility\obj\Debug\net5.0\Rocky_Utility.AssemblyInfo.cs
+C:\Users\Admin\Rider project\Rocky\Rocky_Utility\obj\Debug\net5.0\Rocky_Utility.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Rider project\Rocky\Rocky_Utility\bin\Debug\net5.0\Rocky_Utility.deps.json
+C:\Users\Admin\Rider project\Rocky\Rocky_Utility\bin\Debug\net5.0\Rocky_Utility.dll
+C:\Users\Admin\Rider project\Rocky\Rocky_Utility\bin\Debug\net5.0\ref\Rocky_Utility.dll
+C:\Users\Admin\Rider project\Rocky\Rocky_Utility\bin\Debug\net5.0\Rocky_Utility.pdb
+C:\Users\Admin\Rider project\Rocky\Rocky_Utility\obj\Debug\net5.0\Rocky_Utility.dll
+C:\Users\Admin\Rider project\Rocky\Rocky_Utility\obj\Debug\net5.0\ref\Rocky_Utility.dll
+C:\Users\Admin\Rider project\Rocky\Rocky_Utility\obj\Debug\net5.0\Rocky_Utility.pdb

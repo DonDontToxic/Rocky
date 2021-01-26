@@ -8,9 +8,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Rocky.Data;
-using Rocky.Models;
-using Rocky.Models.ViewModels;
+using Rocky_DataAccess.Data;
+using Rocky_Models;
+using Rocky_Models.ViewModels;
+using Rocky_Ultility;
 
 namespace Rocky.Controllers
 {
@@ -76,14 +77,11 @@ namespace Rocky.Controllers
                 // This is for create
                 return View(productVM);
             }
-            else
-            {
-                // This is for update
-                productVM.Product = _db.Product.Find(id);
-                if (productVM.Product == null) return NotFound();
-                return View(productVM);
-            }
-            return View();
+            
+            // This is for update
+            productVM.Product = _db.Product.Find(id);
+            if (productVM.Product == null) return NotFound();
+            return View(productVM);
         }
         // POST - UPSERT
         [HttpPost]

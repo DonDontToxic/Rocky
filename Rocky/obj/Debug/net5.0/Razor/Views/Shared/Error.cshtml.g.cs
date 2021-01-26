@@ -21,13 +21,13 @@ using Rocky;
 #nullable disable
 #nullable restore
 #line 2 "C:\Users\Admin\Rider project\Rocky\Rocky\Views\_ViewImports.cshtml"
-using Rocky.Models;
+using Rocky_Models;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"25bfd9ca9c43e06cee6d098f186c3f4cca31039c", @"/Views/Shared/Error.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"1afa500e26174cdf9f40431dbc059333d4b081f5", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"631f13f482582212becdb62b95da9b5e8f7e13ca", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared_Error : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<ErrorViewModel>
     {
         #pragma warning disable 1998

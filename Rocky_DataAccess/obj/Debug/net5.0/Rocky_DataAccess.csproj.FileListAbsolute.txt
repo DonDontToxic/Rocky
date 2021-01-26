@@ -1,0 +1,15 @@
+C:\Users\Admin\Rider project\Rocky\Rocky_DataAccess\bin\Debug\net5.0\Rocky_DataAccess.deps.json
+C:\Users\Admin\Rider project\Rocky\Rocky_DataAccess\bin\Debug\net5.0\Rocky_DataAccess.dll
+C:\Users\Admin\Rider project\Rocky\Rocky_DataAccess\bin\Debug\net5.0\ref\Rocky_DataAccess.dll
+C:\Users\Admin\Rider project\Rocky\Rocky_DataAccess\bin\Debug\net5.0\Rocky_DataAccess.pdb
+C:\Users\Admin\Rider project\Rocky\Rocky_DataAccess\bin\Debug\net5.0\Rocky_Models.dll
+C:\Users\Admin\Rider project\Rocky\Rocky_DataAccess\bin\Debug\net5.0\Rocky_Models.pdb
+C:\Users\Admin\Rider project\Rocky\Rocky_DataAccess\obj\Debug\net5.0\Rocky_DataAccess.csprojAssemblyReference.cache
+C:\Users\Admin\Rider project\Rocky\Rocky_DataAccess\obj\Debug\net5.0\Rocky_DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\Rider project\Rocky\Rocky_DataAccess\obj\Debug\net5.0\Rocky_DataAccess.AssemblyInfoInputs.cache
+C:\Users\Admin\Rider project\Rocky\Rocky_DataAccess\obj\Debug\net5.0\Rocky_DataAccess.AssemblyInfo.cs
+C:\Users\Admin\Rider project\Rocky\Rocky_DataAccess\obj\Debug\net5.0\Rocky_DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Rider project\Rocky\Rocky_DataAccess\obj\Debug\net5.0\Rocky_DataAccess.csproj.CopyComplete
+C:\Users\Admin\Rider project\Rocky\Rocky_DataAccess\obj\Debug\net5.0\Rocky_DataAccess.dll
+C:\Users\Admin\Rider project\Rocky\Rocky_DataAccess\obj\Debug\net5.0\ref\Rocky_DataAccess.dll
+C:\Users\Admin\Rider project\Rocky\Rocky_DataAccess\obj\Debug\net5.0\Rocky_DataAccess.pdb

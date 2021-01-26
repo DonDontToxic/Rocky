@@ -21,13 +21,13 @@ using Rocky;
 #nullable disable
 #nullable restore
 #line 2 "C:\Users\Admin\Rider project\Rocky\Rocky\Views\_ViewImports.cshtml"
-using Rocky.Models;
+using Rocky_Models;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"35901646fd8276ee65d950ab28f517f2462fd432", @"/Views/Cart/InquiryConfirmation.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"1afa500e26174cdf9f40431dbc059333d4b081f5", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"631f13f482582212becdb62b95da9b5e8f7e13ca", @"/Views/_ViewImports.cshtml")]
     public class Views_Cart_InquiryConfirmation : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

@@ -215,3 +215,13 @@ C:\Users\Admin\Rider project\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Cart\Index
 C:\Users\Admin\Rider project\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Cart\Summary.cshtml.g.cs
 C:\Users\Admin\Rider project\Rocky\Rocky\bin\Debug\net5.0\Mailjet.Client.dll
 C:\Users\Admin\Rider project\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Cart\InquiryConfirmation.cshtml.g.cs
+C:\Users\Admin\Rider project\Rocky\Rocky\bin\Debug\net5.0\Rocky_Utility.dll
+C:\Users\Admin\Rider project\Rocky\Rocky\bin\Debug\net5.0\Rocky_Utility.pdb
+C:\Users\Admin\Rider project\Rocky\Rocky\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\Admin\Rider project\Rocky\Rocky\bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\Admin\Rider project\Rocky\Rocky\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\Admin\Rider project\Rocky\Rocky\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+C:\Users\Admin\Rider project\Rocky\Rocky\bin\Debug\net5.0\Rocky_Models.dll
+C:\Users\Admin\Rider project\Rocky\Rocky\bin\Debug\net5.0\Rocky_Models.pdb
+C:\Users\Admin\Rider project\Rocky\Rocky\bin\Debug\net5.0\Rocky_DataAccess.dll
+C:\Users\Admin\Rider project\Rocky\Rocky\bin\Debug\net5.0\Rocky_DataAccess.pdb
