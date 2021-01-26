@@ -153,6 +153,9 @@
             "projectReferences": {
               "C:\\Users\\Admin\\Rider project\\Rocky\\Rocky_Models\\Rocky_Models.csproj": {
                 "projectPath": "C:\\Users\\Admin\\Rider project\\Rocky\\Rocky_Models\\Rocky_Models.csproj"
+              },
+              "C:\\Users\\Admin\\Rider project\\Rocky\\Rocky_Utility\\Rocky_Utility.csproj": {
+                "projectPath": "C:\\Users\\Admin\\Rider project\\Rocky\\Rocky_Utility\\Rocky_Utility.csproj"
               }
             }
           }
@@ -200,6 +203,9 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

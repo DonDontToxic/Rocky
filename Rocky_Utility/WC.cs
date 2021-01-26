@@ -9,5 +9,8 @@
         public const string CustomerRole = "Customer";
         
         public static string Email_Admin = "donnod837@protonmail.com";
+        
+        public static string CategoryName = "Category";
+        public static string ApplicationTypeName = "ApplicationType";
     }
 }

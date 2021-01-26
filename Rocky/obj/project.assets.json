@@ -3058,14 +3058,18 @@
           "Microsoft.EntityFrameworkCore": "5.0.2",
           "Microsoft.EntityFrameworkCore.Relational": "5.0.2",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.2",
-          "Rocky_Models": "1.0.0"
+          "Rocky_Models": "1.0.0",
+          "Rocky_Utility": "1.0.0"
         },
         "compile": {
           "bin/placeholder/Rocky_DataAccess.dll": {}
         },
         "runtime": {
           "bin/placeholder/Rocky_DataAccess.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "Rocky_Models/1.0.0": {
         "type": "project",

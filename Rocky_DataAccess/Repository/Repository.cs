@@ -14,7 +14,7 @@ namespace Rocky_DataAccess.Repository
 
         public Repository(ApplicationDbContext db)
         {
-            db = _db;
+            _db = db;
             this.dbSet = _db.Set<T>();
         }
         public T Find(int id)
