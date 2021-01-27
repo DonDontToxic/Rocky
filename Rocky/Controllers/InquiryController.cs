@@ -38,6 +38,43 @@ namespace Rocky.Controllers
             };
             return View(InquiryVm);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DetailsPost()
+        {
+            List<ShoppingCart> shoppingCartList = new List<ShoppingCart>();
+            InquiryVm.InquiryDetail = _inqDelRepo.GetAll(u =>
+                u.InquiryHeaderId == InquiryVm.InquiryHeader.Id);
+
+            foreach (var detail in InquiryVm.InquiryDetail)
+            {
+                ShoppingCart shoppingCart = new ShoppingCart()
+                {
+                    ProductId = detail.ProductId
+                };
+                shoppingCartList.Add(shoppingCart);
+            }
+            HttpContext.Session.Clear();
+            HttpContext.Session.Set(WC.SessionCart, shoppingCartList);
+            HttpContext.Session.Set(WC.SessionInquiryId, InquiryVm.InquiryHeader.Id);
+            
+            return RedirectToAction("Index", "Cart");
+        }
+
+        [HttpPost]
+        public IActionResult Delete()
+        {
+            InquiryHeader inquiryHeader = _inqHeadRepo.FirstOrDefault(u => u.Id == InquiryVm.InquiryHeader.Id);
+            IEnumerable<InquiryDetail> inquiryDetails =
+                _inqDelRepo.GetAll(u => u.InquiryHeaderId == InquiryVm.InquiryHeader.Id);
+            
+            
+            _inqDelRepo.RemoveRange(inquiryDetails);
+            _inqHeadRepo.Remove(inquiryHeader);
+            _inqHeadRepo.Save();
+
+            return RedirectToAction(nameof(Index));
+        }
         
         #region API CALLS
         [HttpGet]
