@@ -15,6 +15,7 @@ using Rocky_DataAccess.Data;
 using Rocky;
 using Rocky_DataAccess.Repository;
 using Rocky_DataAccess.Repository.IRepository;
+using Rocky_Models;
 using Rocky_Ultility;
 
 namespace Rocky
@@ -49,7 +50,10 @@ namespace Rocky
             });
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IApplicationTypeRepository, ApplicationTypeRepository>();
+            services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IInquiryHeaderRepository, InquiryHeaderRepository>();
+            services.AddScoped<IInquiryDetailRepository, InquiryDetailRepository>();
             services.AddControllersWithViews();
         }
 

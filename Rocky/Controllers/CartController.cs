@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Claims;
@@ -11,6 +12,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Rocky;
 using Rocky_DataAccess.Data;
+using Rocky_DataAccess.Repository.IRepository;
 using Rocky_Models;
 using Rocky_Models.ViewModels;
 using Rocky_Ultility;
@@ -20,16 +22,26 @@ namespace Rocky.Controllers
     [Authorize]
     public class CartController : Controller
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IProductRepository _prodRepo;
+        private readonly ICategoryRepository _catRepo;
+        private readonly IApplicationUserRepository _appUserRepo;
+        private readonly IInquiryHeaderRepository _inqHeadRepo;
+        private readonly IInquiryDetailRepository _inqDelRepo;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IEmailSender _emailSender;
         [BindProperty]
         public ProductUserVM ProductUserVm { get; set; }
     
 
-        public CartController(ApplicationDbContext db, IWebHostEnvironment webHostEnvironment, IEmailSender emailSender)
+        public CartController(IProductRepository prodRepo, IApplicationUserRepository appUserRepo,
+            ICategoryRepository catRepo, IInquiryHeaderRepository inqHeadRepo, IInquiryDetailRepository inqDelRepo,
+            IWebHostEnvironment webHostEnvironment, IEmailSender emailSender)
         {
-            _db = db;
+            _prodRepo = prodRepo;
+            _appUserRepo = appUserRepo;
+            _catRepo = catRepo;
+            _inqHeadRepo = inqHeadRepo;
+            _inqDelRepo = inqDelRepo;
             _webHostEnvironment = webHostEnvironment;
             _emailSender = emailSender ;
         }
@@ -46,7 +58,7 @@ namespace Rocky.Controllers
             }
 
             List<int> prodInCart = shoppingCartList.Select(i => i.ProductId).ToList();
-            IEnumerable<Product> prodList = _db.Product.Where(u => prodInCart.Contains(u.Id));
+            IEnumerable<Product> prodList = _prodRepo.GetAll(u => prodInCart.Contains(u.Id));
             return View(prodList);
         }
         [HttpPost]
@@ -75,11 +87,11 @@ namespace Rocky.Controllers
             }
 
             List<int> prodInCart = shoppingCartList.Select(i => i.ProductId).ToList();
-            IEnumerable<Product> prodList = _db.Product.Where(u => prodInCart.Contains(u.Id));
+            IEnumerable<Product> prodList = _prodRepo.GetAll(u => prodInCart.Contains(u.Id));
 
             ProductUserVm = new ProductUserVM()
             {
-                ApplicationUser = _db.ApplicationUser.FirstOrDefault(u => u.Id == claim.Value),
+                ApplicationUser = _appUserRepo.FirstOrDefault(u => u.Id == claim.Value),
                 ProductList = prodList.ToList()
             };
             return View(ProductUserVm);
@@ -90,6 +102,9 @@ namespace Rocky.Controllers
         [ActionName("Summary")]
         public async Task<IActionResult> SummaryPost(ProductUserVM ProductUserVm)
         {
+            var claimsIdenity = (ClaimsIdentity) User.Identity;
+            var claim = claimsIdenity.FindFirst(ClaimTypes.NameIdentifier);
+            
             var PathToTemplate = _webHostEnvironment.WebRootPath + Path.DirectorySeparatorChar.ToString()
                 +"templates"+ Path.DirectorySeparatorChar.ToString()+
                 "Inquiry.html";
@@ -114,7 +129,29 @@ namespace Rocky.Controllers
                 productListSB.ToString());
             
             await _emailSender.SendEmailAsync(WC.Email_Admin, subject, messageBody);
-            
+
+            InquiryHeader inquiryHeader = new InquiryHeader()
+            {
+                ApplicationUserId = claim.Value,
+                FullName = ProductUserVm.ApplicationUser.FullName,
+                Email = ProductUserVm.ApplicationUser.Email,
+                PhoneNumber = ProductUserVm.ApplicationUser.PhoneNumber,
+                InquiryDate = DateTime.Now
+            };
+            _inqHeadRepo.Add(inquiryHeader);
+            _inqHeadRepo.Save();
+
+            foreach (var prod in ProductUserVm.ProductList)
+            {
+                InquiryDetail inquiryDetail = new InquiryDetail()
+                {
+                    InquiryHeaderId = inquiryHeader.Id,
+                    ProductId = prod.Id,
+                };
+                _inqDelRepo.Add(inquiryDetail);
+            }
+            _inqDelRepo.Save();
+             
             return RedirectToAction(nameof(InquiryConfirmation));
         }
         public IActionResult InquiryConfirmation()
