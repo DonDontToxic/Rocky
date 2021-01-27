@@ -91,7 +91,6 @@ namespace Rocky_DataAccess.Repository
         public void RemoveRange(IEnumerable<T> entity)
         {
             dbSet.RemoveRange(entity);
-            throw new NotImplementedException();
         }
 
         public void Save()

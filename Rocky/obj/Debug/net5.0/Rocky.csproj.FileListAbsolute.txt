@@ -227,3 +227,4 @@ C:\Users\Admin\Rider project\Rocky\Rocky\bin\Debug\net5.0\Rocky_DataAccess.dll
 C:\Users\Admin\Rider project\Rocky\Rocky\bin\Debug\net5.0\Rocky_DataAccess.pdb
 C:\Users\Admin\Rider project\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Inquiry\Index.cshtml.g.cs
 C:\Users\Admin\Rider project\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Inquiry\Details.cshtml.g.cs
+C:\Users\Admin\Rider project\Rocky\Rocky\obj\Debug\net5.0\Razor\Views\Shared\_Notification.cshtml.g.cs

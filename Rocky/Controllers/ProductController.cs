@@ -73,7 +73,13 @@ namespace Rocky.Controllers
             
             // This is for update
             productVM.Product = _prodRepo.Find(id.GetValueOrDefault());
-            if (productVM.Product == null) return NotFound();
+            if (productVM.Product == null)
+            {
+                TempData[WC.Error] = "Action failed...Please try again!!!";
+
+                return NotFound();
+            }
+
             return View(productVM);
         }
         // POST - UPSERT
@@ -105,6 +111,7 @@ namespace Rocky.Controllers
                 productVM.Product.Image = fileName + extension;
                 _prodRepo.Add(productVM.Product);
                 _prodRepo.Save();
+                TempData[WC.Success] = "Product created successfully";
             }
             else
             {
@@ -141,6 +148,8 @@ namespace Rocky.Controllers
                 }
                 _prodRepo.Update(productVM.Product);
                 _prodRepo.Save();
+                TempData[WC.Success] = "Product edited successfully";
+
             }
             return RedirectToAction("Index");
         }
@@ -163,7 +172,11 @@ namespace Rocky.Controllers
         public IActionResult DeletePost(int? id)
         {
             var product = _prodRepo.Find(id.GetValueOrDefault());
-            if (product == null) return NotFound();
+            if (product == null)
+            {
+                TempData[WC.Error] = "Action failed...Please try again!!!";
+                return NotFound();
+            }
             
             // Handle the product image on local
             var webRootPath = _webHostEnvironment.WebRootPath;
@@ -176,6 +189,7 @@ namespace Rocky.Controllers
             // Handle the product on db
             _prodRepo.Remove(product);
             _prodRepo.Save();
+            TempData[WC.Success] = "Action completed...";
             return RedirectToAction("Index");
         }
     }

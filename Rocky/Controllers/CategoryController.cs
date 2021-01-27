@@ -38,9 +38,14 @@ namespace Rocky.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Category category)
         {
-            if (!ModelState.IsValid) return View(category);
+            if (!ModelState.IsValid)
+            {
+                TempData[WC.Error] = "Error while creating category";
+                return View(category);
+            }
             _catRepo.Add(category);
             _catRepo.Save();
+            TempData[WC.Success] = "Category created successfully";
             return RedirectToAction("Index");
         }
 
@@ -59,9 +64,15 @@ namespace Rocky.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Category category)
         {
-            if (!ModelState.IsValid) return View(category);
+            if (!ModelState.IsValid)
+            {
+                TempData[WC.Error] = "Error while editing category";
+                return View(category);
+            }
             _catRepo.Update(category);
             _catRepo.Save();
+            TempData[WC.Success] = "Category edited successfully";
+
             return RedirectToAction("Index");
         }
         
@@ -81,9 +92,15 @@ namespace Rocky.Controllers
         public IActionResult DeletePost(int? id)
         {
             var category = _catRepo.Find(id.GetValueOrDefault());
-            if (category == null) return NotFound();
+            if (category == null)
+            {
+                TempData[WC.Error] = "Action failed...Please try again!!!";
+                return NotFound();
+            }
             _catRepo.Remove(category);
             _catRepo.Save();
+            TempData[WC.Success] = "Action completed...";
+
             return RedirectToAction("Index");
         }
     }

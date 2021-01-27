@@ -57,7 +57,8 @@ namespace Rocky.Controllers
             HttpContext.Session.Clear();
             HttpContext.Session.Set(WC.SessionCart, shoppingCartList);
             HttpContext.Session.Set(WC.SessionInquiryId, InquiryVm.InquiryHeader.Id);
-            
+            TempData[WC.Success] = "Inquiry converted successfully";
+
             return RedirectToAction("Index", "Cart");
         }
 
@@ -65,14 +66,12 @@ namespace Rocky.Controllers
         public IActionResult Delete()
         {
             InquiryHeader inquiryHeader = _inqHeadRepo.FirstOrDefault(u => u.Id == InquiryVm.InquiryHeader.Id);
-            IEnumerable<InquiryDetail> inquiryDetails =
-                _inqDelRepo.GetAll(u => u.InquiryHeaderId == InquiryVm.InquiryHeader.Id);
-            
-            
+            IEnumerable<InquiryDetail> inquiryDetails = _inqDelRepo.GetAll(u => u.InquiryHeaderId == InquiryVm.InquiryHeader.Id);
+
             _inqDelRepo.RemoveRange(inquiryDetails);
             _inqHeadRepo.Remove(inquiryHeader);
             _inqHeadRepo.Save();
-
+            TempData[WC.Success] = "Action completed...";
             return RedirectToAction(nameof(Index));
         }
         

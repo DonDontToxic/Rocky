@@ -76,6 +76,8 @@ namespace Rocky.Controllers
             }
             shoppingCartList.Add(new ShoppingCart {ProductId = id});
             HttpContext.Session.Set(WC.SessionCart, shoppingCartList);
+            TempData[WC.Success] = "Item added successfully";
+            
             return RedirectToAction(nameof(Index)); 
         }
         // POST - REMOVE
@@ -94,6 +96,8 @@ namespace Rocky.Controllers
                 shoppingCartList.Remove(itemToRemove);
             }
             HttpContext.Session.Set(WC.SessionCart, shoppingCartList);
+            TempData[WC.Success] = "Item removed successfully";
+            
             return RedirectToAction(nameof(Index));         
         }
         

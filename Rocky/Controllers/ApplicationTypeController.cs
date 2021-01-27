@@ -36,9 +36,15 @@ namespace Rocky.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(ApplicationType type)
         {
-            if (!ModelState.IsValid) return View(type);
+            if (!ModelState.IsValid)
+            {
+                TempData[WC.Error] = "Error while creating category";
+                return View(type);
+            }
             _appRepo.Add(type);
             _appRepo.Save();
+            TempData[WC.Success] = "Application type created successfully";
+
             return RedirectToAction("Index");
         }
         
@@ -55,9 +61,16 @@ namespace Rocky.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(ApplicationType type)
         {
-            if (!ModelState.IsValid) return View(type);
+            if (!ModelState.IsValid)
+            {
+                TempData[WC.Error] = "Error while editing category";
+
+                return View(type);
+            }
             _appRepo.Update(type);
             _appRepo.Save();
+            TempData[WC.Success] = "Application type edited successfully";
+
             return RedirectToAction("Index");
         }
         
@@ -73,12 +86,18 @@ namespace Rocky.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult DeletePost(int? id)
-        {            
-            if (id == null || id == 0) return NotFound();
+        {
+            if (id == null || id == 0)
+            {
+                TempData[WC.Error] = "Action failed...Please try again!!!";
+                return NotFound();
+            }
             var typeObj = _appRepo.Find(id.GetValueOrDefault());
             if (typeObj == null) return NotFound();
             _appRepo.Remove(typeObj);
             _appRepo.Save();
+            TempData[WC.Success] = "Action completed...";
+
             return RedirectToAction("Index");        
         }
     }

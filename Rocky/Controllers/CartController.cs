@@ -151,7 +151,8 @@ namespace Rocky.Controllers
                 _inqDelRepo.Add(inquiryDetail);
             }
             _inqDelRepo.Save();
-             
+            TempData[WC.Success] = "Inquiry submitted successfully";
+
             return RedirectToAction(nameof(InquiryConfirmation));
         }
         public IActionResult InquiryConfirmation()
@@ -173,6 +174,8 @@ namespace Rocky.Controllers
             }
             shoppingCartList.Remove(shoppingCartList.FirstOrDefault(u => u.ProductId == id));
             HttpContext.Session.Set(WC.SessionCart, shoppingCartList);
+            TempData[WC.Success] = "Inquiry removed successfully";
+
             return RedirectToAction(nameof(Index));        
         }
     }
